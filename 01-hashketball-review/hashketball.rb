@@ -117,15 +117,30 @@ def game_hash
   }
 end
 
+def all_players
+  home_players = game_hash[:home][:players]
+  away_players = game_hash[:away][:players]
+  home_players.merge(away_players)
+end
 
-# def num_points_scored(player_name)
-#   # get a list of all the players
-#   # find the player whose name matches the argument 'player_name'
-#   # return that player's points
-# end
+def num_points_scored(player_name)
+  all_players[player_name][:points]
+end
 
+def shoe_size(player_name)
+  stats = all_players[player_name]
+  stats[:shoe]
+  # # find the player whose name matches the argument 'player_name'
+  # # maybe we can use the find method?
+  # all_players.each do |key, value|
+  #   if player_name == key
+  #     # return that player's shoe_size
+  #     return value[:shoe]
+  #   end
+  # end
+end
 
-
+# binding.pry
 
 # # EXERCISE:
 # # Define a method called get_names that takes an array of instructors
