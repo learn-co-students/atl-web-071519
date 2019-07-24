@@ -7,6 +7,10 @@ class BasicORM
     DB[:conn].execute("PRAGMA table_info(#{table_name})").map { |hash| hash['name'] }
   end
 
+  def self.non_id_columns
+    self.column_names[1..]
+  end
+
   def self.all
     records = DB[:conn].execute("SELECT * FROM #{table_name}")
     records.map { |hash| self.new(hash) }
@@ -26,21 +30,41 @@ class BasicORM
   end
 
   def save
-    save_columns = self.class.column_names[1..]
-    if !self.persisted?
-      insert_sql = <<-SQL
-        INSERT INTO #{self.class.table_name} (#{save_columns.join(', ')})
-        VALUES (#{save_columns.map { |col_name| self.send(col_name) }})
-      SQL
-      DB[:conn].execute(insert_sql)
+    if self.persisted?
+      DB[:conn].execute(update_sql)
     else
-      # sql = "UPDATE tweets SET username='#{username}',message='#{message}' WHERE id=#{id}"
-      # DB[:conn].execute(sql)
+      DB[:conn].execute(insert_sql)
     end
   end
 
   def destroy
-    sql = "DELETE FROM #{self.class.table_name} WHERE id=#{id}"
+    sql = "DELETE FROM #{self.class.table_name} WHERE id=#{self.id}"
     DB[:conn].execute(sql)
+  end
+
+  private
+
+  def column_values
+    class.non_id_columns.map { |name| "\"#{self.send(col_name)}\"" }
+  end
+
+  def column_pairs
+    names = self.class.non_id_columns
+    names.zip(column_values)
+  end
+
+  def insert_sql
+    <<-SQL
+      INSERT INTO #{self.class.table_name} (#{self.class.non_id_columns.join(', ')})
+      VALUES (#{column_values.join(', ')})
+    SQL
+  end
+
+  def update_sql
+    <<-SQL
+      UPDATE #{self.class.table_name}
+      SET #{column_pairs.map {|name, value| "#{name}=#{value}"}.join(', ')}
+      WHERE id=#{self.id}
+    SQL
   end
 end
