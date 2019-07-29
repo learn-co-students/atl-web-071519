@@ -17,13 +17,13 @@ ActiveRecord::Schema.define(version: 2019_07_29_132251) do
     t.integer "post_id"
     t.text "content"
     t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
     t.text "content"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
