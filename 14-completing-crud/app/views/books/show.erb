@@ -1,0 +1,16 @@
+This is a detail page for a book.
+
+<h1>Author: <%= @book.author.full_name %></h1>
+<h2>Title: <%= @book.title %></h2>
+
+<p><%= @book.snippet%></p>
+
+<a href="/">Homepage</a>
+
+<br />
+<br />
+
+<form method="POST" action="/books/<%= @book.id %>">
+  <input type="hidden" name="_method" value="DELETE" />
+  <input type="submit" value="Delete this book!" />
+</form>

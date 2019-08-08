@@ -1,0 +1,27 @@
+<h1>Add a new book</h1>
+
+<% if @book.errors.present? %>
+  <ul>
+    <% @book.errors.full_messages.each do |msg| %>
+      <li style="color: red;"><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form method="POST" action="/books">
+  <label for="title">Title: </label>
+  <input type="text" name="title" />
+  <label for="snippet">Snippet: </label>
+  <textarea name="snippet"></textarea>
+  <label for="author_id">Author: </label>
+  <select name="author_id">
+    <% Author.all.each do |author| %>
+      <option value="<%= author.id %>">
+        <%= author.full_name %>
+      </option>
+    <% end %>
+  </select>
+  <input type="submit" value="Submit" />
+</form>
+
+<a href="/books">List of books</a>

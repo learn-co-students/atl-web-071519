@@ -1,0 +1,10 @@
+<h1>Add a new author</h1>
+
+<form method="POST" action="/authors">
+  <input type="text" name="full_name" placeholder="Full Name" />
+  <% 3.times do %>
+    <input type="text" name="books[][title]" placeholder="Book Title" />
+    <input type="text" name="books[][snippet]" placeholder="Description..." />
+  <% end %>
+  <input type="submit" value="Add Author" />
+</form>
