@@ -1,0 +1,47 @@
+/* * {
+  border: 1px solid red;
+} */
+
+body {
+  margin: 0 auto;
+}
+
+.octocat {
+  display: inline-block;
+  margin: 5px;
+}
+
+.octocat img {
+  border: 1px solid lightgrey;
+}
+
+img {
+  width: 250px;
+}
+
+.image-footer {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.image-caption {
+  float: right;
+}
+
+.authors {
+  float: right;
+}
+
+.authors img {
+  width: 20px;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
