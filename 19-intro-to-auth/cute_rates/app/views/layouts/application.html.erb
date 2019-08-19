@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CuteRates</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="ui content main">
+      <% if current_user %>
+        <p>Welcome back, <%= current_user.name %></p>
+        <%= link_to("Logout", login_path, method: :delete) %>
+      <% else %>
+        <%= link_to("Login", login_path) %>
+      <% end %>
+      <p style="color: red;"><%= flash[:notice] %></p>
+      <%= yield %>
+    </div>
+  </body>
+</html>

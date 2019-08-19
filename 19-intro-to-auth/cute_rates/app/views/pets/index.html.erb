@@ -1,0 +1,12 @@
+<h1>Look at these cute pets!</h1>
+
+<ul>
+  <% @pets.each do |pet| %>
+    <li>
+      <%= link_to(pet.name, pet_path(pet)) %> | 
+      <%= link_to("Delete Pet", pet_path(pet), method: :delete) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to("Add a pet", new_pet_path) %>
