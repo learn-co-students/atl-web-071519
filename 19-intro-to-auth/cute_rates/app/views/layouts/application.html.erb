@@ -13,13 +13,26 @@
 
   <body>
     <div class="ui content main">
-      <% if current_user %>
-        <p>Welcome back, <%= current_user.name %></p>
-        <%= link_to("Logout", login_path, method: :delete) %>
-      <% else %>
-        <%= link_to("Login", login_path) %>
+      <div class="ui secondary menu">
+        <%= link_to("People", people_path, class: "item") %>
+        <%= link_to("Pets", pets_path, class: "item") %>
+        <div class="right menu">
+          <% if current_user %>
+            <div class="item">Welcome back, <%= current_user.name %></div>
+            <%= link_to("Logout", login_path, method: :delete, class: "item") %>
+          <% else %>
+            <%= link_to("Login", login_path, class: "item") %>
+          <% end %>
+        </div>
+      </div>
+      <% if flash[:notice] %>
+        <div class="ui info message">
+          <div class="header">
+            Notice
+          </div>
+          <p><%= flash[:notice] %></p>
+        </div>
       <% end %>
-      <p style="color: red;"><%= flash[:notice] %></p>
       <%= yield %>
     </div>
   </body>

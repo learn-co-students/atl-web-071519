@@ -4,16 +4,19 @@ class AuthController < ApplicationController
 
   def create
     @person = Person.find_by(username: params[:username])
-    if @person && @person.password == params[:password]
-      # cookies[:user_id]
+    if @person && @person.authenticate(params[:password])
+      # cookies[user_id]
       session[:user_id] = @person.id
       redirect_to pets_path
     else
-      @error = "Incorrect username or password."
+      flash[:notice] = "Incorrect username or password."
       render :new
     end
   end
 
-  def destroy
+  def logout
+    session.delete(:user_id)
+    flash[:notice] = "You are logged out."
+    redirect_to root_path
   end
 end

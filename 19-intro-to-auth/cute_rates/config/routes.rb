@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get '/login', to: 'auth#new'
   post '/login', to: 'auth#create'
-  delete '/logout', to: 'auth#destroy'
+  delete '/login', to: 'auth#logout'
 
   resources :pets
   resources :people, only: [:show, :index, :new, :create]
