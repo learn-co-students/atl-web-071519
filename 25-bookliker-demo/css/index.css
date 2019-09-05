@@ -1,0 +1,14 @@
+body {
+	display: grid;
+	grid-template-columns: 4fr 8fr
+}
+
+#list{
+  line-height: 25px;
+  cursor: pointer;
+  color: red;
+}
+
+li:hover {
+  color: black;
+}
