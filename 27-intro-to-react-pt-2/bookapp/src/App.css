@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+.navbar {
+  background-color: 'black';
+  color: 'white';
+  height: 100px
+}
