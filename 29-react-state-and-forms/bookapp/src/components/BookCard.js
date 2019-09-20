@@ -1,16 +1,23 @@
 import React from 'react';
 
-const BookCard = (props) => {
+class BookCard extends React.Component {
+
+  componentWillUnmount=()=>{
+    console.log('unmounted')
+  }
+
+  render(){
   return(
     <div className="bookcard">
-      <img src={props.book.img} alt='' height='250px' width='200px' />
+      <img src={this.props.book.img} alt='' height='250px' width='200px' />
       <div className="booktitle">
-        {props.book.title}
+        {this.props.book.title}
         <br/>
-        By: {props.book.author}
+        By: {this.props.book.author}
       </div>
+      <button id={this.props.book.title} onClick={(e)=> this.props.handleDelete(e)}>Delete</button>
     </div>
-  )
+  )}
 }
 
 export default BookCard;

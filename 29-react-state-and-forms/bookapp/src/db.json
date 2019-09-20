@@ -76,6 +76,12 @@
       "img": "https://images-na.ssl-images-amazon.com/images/I/61akeHxE0OL._SX258_BO1,204,203,200_.jpg",
       "id": 14,
       "read": false
+    },
+    {
+      "title": "The Immortalists",
+      "author": "Chloe Benjamin",
+      "img": "https://images2.penguinrandomhouse.com/cover/9780735213180",
+      "id": 15
     }
   ]
 }

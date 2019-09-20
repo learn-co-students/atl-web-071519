@@ -5,7 +5,7 @@ const BookContainer = (props) => {
   return(
     <div className="maincontainer">
       {
-        props.books.map((book) => <BookCard key={book.title} book={book} />)
+        props.books.map((book) => <BookCard handleDelete={props.handleDelete} key={book.title} book={book} />)
       }
     </div>
   )
